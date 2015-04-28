@@ -27,6 +27,7 @@ namespace NameGameApp
     {
         public string ModifyName(string name)
         {
+            //Sample regex for names that start with 'ch', 'sh', or 'st' (For example: Chuck, Sherry, Steve)
             var regex = new Regex(@"(ch|sh|st)");
             var match = regex.Match(name);
             name = name.Remove(0, match.Success ? 2 : 1);
@@ -36,6 +37,7 @@ namespace NameGameApp
 
         public string NameMessage(string name, string newName)
         {
+            //Regex if the name begins with a 'b', 'f', 'm', we don't need to have the 'bo-b', 'fo-f', or 'mo-m' portion
             var regex = new Regex(@"[bfm]");
             var match = regex.Match(name);
             return string.Format(match.Success ? "{0}, {0}, bo-{1} \r\nBanana-fana fo-{1} \r\nFee-fi mo-{1} \r\n{0}!" : "{0}, {0}, bo-b{1} \r\nBanana-fana fo-f{1} \r\nFee-fi mo-m{1} \r\n{0}!", name, newName);
